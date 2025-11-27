@@ -1,0 +1,34 @@
+<!-- src/app/pages/home/home.html -->
+<header class="topbar" role="banner">
+  <div class="container topbar-inner">
+    <div class="brand" aria-hidden="true">EducaTube</div>
+    <nav class="actions" aria-label="Acciones de usuario">
+      <button class="btn btn-outline" (click)="onRegister()" aria-label="Registrar">Registrar</button>
+      <button class="btn btn-primary" (click)="onLogin()" aria-label="Iniciar sesión">Iniciar sesión</button>
+    </nav>
+  </div>
+</header>
+
+<main class="hero" role="main">
+  <div class="hero-content container">
+    <h1 class="title">EducaTube</h1>
+    <p class="subtitle">
+      Es una aplicación web para que veas contenido educativo, organizado por temas y niveles.
+      Encuentra cursos, videos y recursos diseñados para aprender de forma práctica y entretenida.
+    </p>
+
+    <div class="cta-row">
+      <button class="btn btn-primary large" (click)="onRegister()">Comenzar</button>
+      <button class="btn btn-ghost large" (click)="onLogin()">Ya tengo cuenta</button>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer" role="contentinfo">
+  <div class="container">
+    <small>© {{ year }} EducaTube — Aprendizaje accesible para todos</small>
+  </div>
+</footer>
+
+<!-- router-outlet: aquí se renderizarán las rutas (register, login, etc.) -->
+<router-outlet></router-outlet>

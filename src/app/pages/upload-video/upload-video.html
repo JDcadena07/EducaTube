@@ -1,0 +1,98 @@
+<div class="upload-page">
+
+  <header class="top">
+    <h2>Mis videos</h2>
+    <button class="btn btn-primary fab" (click)="openForm()">+</button>
+  </header>
+
+  <section class="videos-list">
+    <div *ngIf="loadingList" class="empty">Cargando videos...</div>
+
+    <div *ngIf="!loadingList && videos.length === 0" class="empty">
+      Aún no tienes videos
+    </div>
+
+    <div *ngIf="!loadingList && videos.length > 0" class="grid">
+      <div class="card-video" *ngFor="let v of videos">
+        <div class="thumb-wrap">
+          <img [src]="v.thumbnailUrl" alt="{{v.title}}" />
+        </div>
+        <div class="meta">
+          <div class="title">{{ v.title }}</div>
+          <div class="category">{{ v.category }}</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <aside class="side-form" [class.open]="formOpen" role="dialog" aria-modal="true">
+    <div class="form-header">
+      <h3>Subir video</h3>
+      <button class="btn btn-ghost small" (click)="closeForm()">Cerrar</button>
+    </div>
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form-body">
+
+      <label class="field">
+        <span class="label-text">Título</span>
+        <input type="text" formControlName="title" />
+        <div class="error" *ngIf="f['title'].touched && f['title'].invalid">
+          El título es obligatorio.
+        </div>
+      </label>
+
+      <label class="field">
+        <span class="label-text">Descripción</span>
+        <textarea formControlName="description" rows="4"></textarea>
+      </label>
+
+      <label class="field">
+        <span class="label-text">Categoría</span>
+        <select formControlName="category">
+          <option value="">Selecciona</option>
+          <option value="calculo">Cálculo</option>
+          <option value="fisica">Física</option>
+          <option value="idioma">Idioma</option>
+          <option value="quimica">Química</option>
+          <option value="biologia">Biología</option>
+          <option value="artes">Artes</option>
+        </select>
+        <div class="error" *ngIf="f['category'].touched && f['category'].invalid">
+          Selecciona una categoría.
+        </div>
+      </label>
+
+      <label class="field">
+        <span class="label-text">Miniatura (imagen)</span>
+        <input type="file" accept="image/*" (change)="onThumbnailChange($event)" />
+        <div class="thumb-preview">
+          <div *ngIf="thumbnailPreview; else emptyThumb" class="thumb-box">
+            <img [src]="thumbnailPreview" alt="Preview" />
+          </div>
+          <ng-template #emptyThumb>
+            <div class="thumb-box empty">Previsualización</div>
+          </ng-template>
+        </div>
+        <div class="muted">La imagen se ajusta a un área fija y se subirá a Cloudinary.</div>
+      </label>
+
+      <label class="field">
+        <span class="label-text">Video</span>
+        <input type="file" accept="video/*" (change)="onVideoFileChange($event)" />
+        <div class="video-preview">
+          <video *ngIf="videoPreviewUrl" [src]="videoPreviewUrl" controls></video>
+          <div *ngIf="!videoPreviewUrl" class="muted">Previsualización del video (archivo local).</div>
+        </div>
+      </label>
+
+      <div class="actions">
+        <button class="btn btn-primary" type="submit" [disabled]="loading">
+          {{ loading ? 'Publicando...' : 'Publicar' }}
+        </button>
+      </div>
+
+      <div class="error-message" *ngIf="error">{{ error }}</div>
+    </form>
+  </aside>
+
+</div>

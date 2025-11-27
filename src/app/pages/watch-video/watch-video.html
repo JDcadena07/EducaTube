@@ -1,0 +1,48 @@
+<div class="watch-page">
+
+  <header class="top">
+    <h2>Explorar videos</h2>
+
+    <select [(ngModel)]="category" (change)="filter()">
+      <option value="">Todas las categorías</option>
+      <option value="calculo">Cálculo</option>
+      <option value="fisica">Física</option>
+      <option value="idioma">Idioma</option>
+      <option value="quimica">Química</option>
+      <option value="biologia">Biología</option>
+      <option value="artes">Artes</option>
+    </select>
+  </header>
+
+  <section class="videos-grid">
+    <div *ngIf="loading" class="empty">Cargando videos...</div>
+    <div *ngIf="!loading && filtered.length === 0" class="empty">
+      No hay videos disponibles.
+    </div>
+
+    <div class="grid" *ngIf="filtered.length > 0">
+      <div class="card" *ngFor="let v of filtered" (click)="openVideo(v)">
+        <div class="thumb"><img [src]="v.thumbnailUrl"></div>
+        <div class="meta">
+          <div class="title">{{v.title}}</div>
+          <div class="cat">{{v.category}}</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MODAL -->
+  <div class="modal" *ngIf="selected">
+    <div class="modal-content">
+      <button class="close" (click)="closeVideo()">×</button>
+      <h2>{{selected.title}}</h2>
+
+      <video controls autoplay style="width:100%">
+        <source [src]="selected.videoUrl">
+      </video>
+
+      <p class="desc">{{selected.description}}</p>
+    </div>
+  </div>
+
+</div>

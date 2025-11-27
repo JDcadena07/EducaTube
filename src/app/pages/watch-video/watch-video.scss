@@ -1,0 +1,124 @@
+.watch-page {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  select {
+    padding: 8px 12px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+  }
+}
+
+.videos-grid {
+  margin-top: 20px;
+  flex: 1;
+  overflow-y: auto;
+
+  .empty {
+    padding: 30px;
+    text-align: center;
+    color: #666;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 15px;
+
+    .card {
+      background: #fff;
+      border-radius: 10px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: 0.2s;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+
+      &:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
+      }
+
+      .thumb {
+        width: 100%;
+        height: 150px;
+        background: #eee;
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+
+      .meta {
+        padding: 10px;
+
+        .title {
+          font-weight: 600;
+          font-size: 15px;
+        }
+
+        .cat {
+          font-size: 13px;
+          color: #777;
+        }
+      }
+    }
+  }
+}
+
+/* MODAL GRANDE DE VIDEO */
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+}
+
+.modal-content {
+  background: #fff;
+  width: 750px;
+  max-width: 95%;
+  max-height: 90vh;
+  border-radius: 12px;
+  padding: 20px;
+  overflow-y: auto;
+  position: relative;
+
+  h2 {
+    margin-top: 0;
+  }
+
+  video {
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 15px;
+  }
+
+  .desc {
+    margin-top: 10px;
+    font-size: 15px;
+    color: #444;
+  }
+
+  .close {
+    position: absolute;
+    right: 18px;
+    top: 10px;
+    font-size: 26px;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+}

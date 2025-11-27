@@ -1,0 +1,45 @@
+<div class="register-page">
+  <div class="card">
+
+    <h2 class="card-title">Iniciar sesión</h2>
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+      <!-- Email -->
+      <div class="field">
+        <label class="label">Correo electrónico</label>
+        <input type="email" formControlName="email" />
+        <div class="error" *ngIf="f['email'].touched && f['email'].invalid">
+          Ingresa un correo válido.
+        </div>
+      </div>
+
+      <!-- Password -->
+      <div class="field">
+        <label class="label">Contraseña</label>
+        <input type="password" formControlName="password" />
+        <div class="error" *ngIf="f['password'].touched && f['password'].invalid">
+          La contraseña es obligatoria y debe tener mínimo 6 caracteres.
+        </div>
+      </div>
+
+      <!-- Botón -->
+      <div class="actions">
+        <button class="btn" type="submit" [disabled]="loading">
+          {{ loading ? 'Ingresando...' : 'Iniciar sesión' }}
+        </button>
+      </div>
+
+      <!-- Error -->
+      <div class="error-message" *ngIf="error">
+        {{ error }}
+      </div>
+
+      <p class="muted">
+        ¿No tienes cuenta?
+        <a routerLink="/register">Regístrate aquí</a>
+      </p>
+
+    </form>
+  </div>
+</div>

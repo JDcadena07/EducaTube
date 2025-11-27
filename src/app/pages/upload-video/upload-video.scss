@@ -1,0 +1,71 @@
+/* pega aquí el css que te pasé antes o reutiliza tu register.scss estilos; el anterior funciona */
+.upload-page {
+  padding: 1.5rem;
+  max-width: 1100px;
+  margin: 0 auto;
+
+  .top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+
+    h2 { margin: 0; font-size: 1.5rem; color: #071133; }
+
+    .fab {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      font-size: 1.5rem;
+      padding: 0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
+  .videos-list { min-height: 280px;
+    .empty { color: #6b7280; padding: 2.5rem; text-align:center; background:#fff; border-radius:10px; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1rem;
+      max-height: 56vh;
+      overflow-y: auto;
+      padding-right: 0.5rem;
+    }
+    .card-video {
+      background: #fff; border-radius: 10px; box-shadow: 0 8px 26px rgba(2,6,23,0.03); padding: 0.5rem; display:flex; flex-direction:column; gap:0.5rem;
+      .thumb-wrap { width:100%; height:140px; border-radius:8px; overflow:hidden; background:#eef4ff; display:flex; align-items:center; justify-content:center;
+        img { width:100%; height:100%; object-fit:cover; display:block; }
+      }
+      .meta { .title { font-weight:700; color:#071133; font-size:0.98rem } .category { font-size:0.85rem; color:#6b7280; margin-top:0.25rem } }
+    }
+  }
+
+  .side-form {
+    position: fixed; right: -420px; top:0; height:100vh; width:420px; background:#fff; box-shadow:-20px 0 60px rgba(2,6,23,0.08); padding:1rem; transition:right 220ms ease; z-index:60; overflow-y:auto;
+    &.open { right: 0; }
+    .form-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:0.5rem; h3{margin:0} }
+    .form-body { display:grid; gap:0.75rem;
+      .field { display:flex; flex-direction:column;
+        .label-text { font-size:0.9rem; color:#374151; margin-bottom:0.35rem; }
+        input[type="text"], input[type="file"], textarea, select { padding:0.6rem 0.75rem; border-radius:8px; border:1px solid rgba(15,23,42,0.08); font-size:1rem; outline:none; }
+        textarea { resize: vertical; }
+        .thumb-preview { margin-top:0.5rem;
+          .thumb-box { width:100%; height:160px; border-radius:8px; overflow:hidden; display:flex; align-items:center; justify-content:center; background:#eef4ff; }
+          .thumb-box img { width:100%; height:100%; object-fit:cover; display:block; }
+        }
+        .video-preview { margin-top:0.5rem; video { width:100%; height:auto; border-radius:8px; background:#000; } }
+        .error { color:#b91c1c; font-size:0.85rem; margin-top:0.35rem; }
+        .muted { font-size:0.9rem; color:#6b7280; margin-top:0.35rem; }
+      }
+      .actions { margin-top:0.5rem; display:flex; justify-content:flex-end;
+        .btn { padding:0.6rem 1rem; border-radius:8px; }
+      }
+      .error-message { color:#b91c1c; margin-top:0.5rem; }
+    }
+  }
+
+  @media (max-width: 840px) { .side-form { width:100%; right:-100%; &.open{right:0} } }
+}
